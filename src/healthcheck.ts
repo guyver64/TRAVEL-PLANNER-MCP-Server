@@ -1,13 +1,11 @@
-// healthcheck.js
-import express from 'express';
-
+import express, { Request, Response } from 'express';
 const app = express();
-const PORT = process.env.PORT || 10000;
 
-app.get('/', (_req, res) => {
-  res.send('MCP Server is running.');
+app.get('/health', (req: Request, res: Response) => {
+  res.send('OK');
 });
 
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Health check server listening on port ${PORT}`);
+  console.log(`Healthcheck running on port ${PORT}`);
 });
