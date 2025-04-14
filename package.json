@@ -17,9 +17,8 @@
     "build": "tsc",
     "prepare": "npm run build",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
-    "start": "concurrently \"node dist/server.js\" \"node dist/healthcheck.js\"",
-  "build": "tsc"
+    "prepublishOnly": "npm run build",
+    "start": "concurrently \"node dist/server.js\" \"node dist/healthcheck.js\""
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.5.0",
