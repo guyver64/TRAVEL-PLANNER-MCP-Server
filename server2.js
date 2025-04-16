@@ -1,5 +1,4 @@
 import express from 'express';
-import serverRoutes from './server.js'; // Importez la logique existante de server.js (si elle est exportée)
 
 const app = express();
 const PORT = process.env.PORT || 3000;
