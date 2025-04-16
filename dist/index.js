@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { HttpServerTransport } from "@modelcontextprotocol/sdk/server/http.js";
 import { CallToolRequestSchema, ListToolsRequestSchema, } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -170,7 +170,7 @@ server.setRequestHandler(CallToolRequestSchema, (request) => __awaiter(void 0, v
 // Start server
 function runServer() {
     return __awaiter(this, void 0, void 0, function* () {
-        const transport = new StdioServerTransport();
+        const transport = new HttpServerTransport({ port: 3000 });
         yield server.connect(transport);
         console.error("Travel Planner MCP Server running on stdio");
     });
@@ -178,4 +178,17 @@ function runServer() {
 runServer().catch((error) => {
     console.error("Fatal error running server:", error);
     process.exit(1);
+});
+
+import express from 'express';
+
+const app = express();
+const PORT = 3000;
+
+app.get('/test', (req, res) => {
+    res.send('HTTP server running!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
